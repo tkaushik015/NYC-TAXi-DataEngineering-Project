@@ -19,13 +19,17 @@ An interactive **end-to-end data engineering pipeline** built on **Azure**, usin
 ## 🏗️ Architecture  
 
 ```mermaid
-flowchart LR
-    API[NYC Taxi API] --> ADF[Azure Data Factory: Dynamic Pipelines] --> Bronze[Bronze Layer (Raw Data)]
-    Bronze -->|PySpark in Databricks| Silver[Silver Layer (Cleaned & Processed)]
-    Silver -->|Delta Lake (ACID, Time Travel)| Gold[Gold Layer (Analytics-Ready)]
-    Gold --> PowerBI[Power BI / Analytics Tools]
-```  
 
+
+
+flowchart LR
+  API[NYC Taxi API] --> ADF[Azure Data Factory]
+  ADF --> Bronze[Bronze Layer]
+  Bronze --> Silver[Silver Layer]
+  Silver --> Gold[Gold Layer]
+  Gold --> PowerBI[Power BI]
+
+```
 - **Bronze Layer**: Raw parquet files fetched dynamically from APIs  
 - **Silver Layer**: Cleaned, structured data with applied business rules  
 - **Gold Layer**: Curated, optimized Delta tables for BI and ML use cases  
